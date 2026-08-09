@@ -8,11 +8,13 @@ Solutions to some of the Advent of Code 2025 problems using SQL.
 
 ## Instructions
 
-Clone the repository, add input file, run the run.py script.
+Clone the repository, add input file, change the file paths in run.py, run the run.py script.
+The run.py script currently finds the solutions for Day 1.
 
 ```bash
 git clone https://github.com/lewistang-uk/aoc-in-sql.git
 cd aoc-in-sql
 # add input text document as inputs/dayXX.txt
+# update input and SQL file paths in run.py
 python run.py
 ```
