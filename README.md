@@ -4,7 +4,7 @@ Solutions to some of the Advent of Code 2025 problems using SQL.
 
 ## Structure 
 
-/sql contains all the queries, which are run by run.py. The puzzle inputs should be stored as a text document in an inputs/ folder, eg. inputs/day01.txt.
+sql/ contains all the queries, which are run by run.py. The puzzle inputs should be stored as a text document in an inputs/ folder, eg. inputs/day01.txt.
 
 ## Instructions
 
