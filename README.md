@@ -4,7 +4,7 @@ Solutions to some of the Advent of Code 2025 problems using SQL.
 
 ## Structure 
 
-```
+```bash
 aoc-in-sql/
 ├── .gitignore
 ├── README.md
