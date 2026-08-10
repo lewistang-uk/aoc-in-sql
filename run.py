@@ -1,42 +1,44 @@
 import sqlite3
+from pathlib import Path
 
+# initialise db with inputs
 conn = sqlite3.connect("aoc.db")
 cursor = conn.cursor()
 
-cursor.execute("DROP TABLE IF EXISTS day1")
-cursor.execute(
-"""
-CREATE TABLE day1 (
-    id INTEGER PRIMARY KEY,
-    ln TEXT
-)
-"""
-)
+folder = Path("inputs")
+files = [file.name for file in folder.iterdir() if file.is_file()]
 
-with open("inputs/day01.txt") as f:
-    cursor.executemany(
-        "INSERT INTO day1 (ln) VALUES (?)",
-        ((line.rstrip("\n"),) for line in f)
-    )
+for file in files:
+    pth, _ = file.split(".") # returns ["dayXX", "txt"]
+
+    with open(Path("inputs") / file) as f:
+        cursor.execute(f"DROP TABLE IF EXISTS {pth}")
+        cursor.execute(
+            f"""
+            CREATE TABLE {pth} (
+                id INTEGER PRIMARY KEY,
+                ln TEXT
+            )
+            """)
+        cursor.executemany(
+            f"INSERT INTO {pth} (ln) VALUES (?)",
+            ((line.rstrip("\n"),) for line in f)
+        )
 
 conn.commit()
 
-# part one
-with open("sql/day01_p1.sql") as f:
-    query = f.read()
+# run sql queries
+folder = Path("sql")
+files = [file.name for file in folder.iterdir() if file.is_file()]
 
-rows = cursor.execute(query).fetchall()
+for file in sorted(files):
+    with open(Path("sql") / file) as f:
+        query = f.read()
 
-for row in rows:
-    print(row)
+    pth, _ = file.split(".") # returns ["dayXX_pN", "txt"]
+    rows = cursor.execute(query).fetchall()
 
-# part two
-with open("sql/day01_p2.sql") as f:
-    query = f.read()
-
-rows = cursor.execute(query).fetchall()
-
-for row in rows:
-    print(row)
+    for row in rows:
+        print(f"Solution to {pth}: {row}")
 
 conn.close()
