@@ -16,7 +16,6 @@ Inputs can be obtained from https://adventofcode.com/2025 after creating an acco
 ## Instructions
 
 Clone the repository, add input files, run the run.py script.
-The run.py script currently finds the solutions for Day 1.
 
 ```bash
 git clone https://github.com/lewistang-uk/aoc-in-sql.git
