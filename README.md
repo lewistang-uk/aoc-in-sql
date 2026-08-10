@@ -4,17 +4,24 @@ Solutions to some of the Advent of Code 2025 problems using SQL.
 
 ## Structure 
 
-sql/ contains all the queries, which are run by run.py. The puzzle inputs should be stored as a text document in an inputs/ folder, eg. inputs/day01.txt.
+```bash
+aoc-in-sql/
+├── .gitignore
+├── README.md
+├── inputs.example/        # example input folder
+├── run.py                 # runner to execute SQL solutions
+└── sql/                   # contains all SQL queries used
+```
 
+Inputs can be obtained from https://adventofcode.com/2025 after creating an account. These should be saved into text documents in an inputs/ folder. An example is in the repository.
+    
 ## Instructions
 
-Clone the repository, add input file, change the file paths in run.py, run the run.py script.
-The run.py script currently finds the solutions for Day 1.
+Clone the repository, add input files, run the run.py script.
 
 ```bash
 git clone https://github.com/lewistang-uk/aoc-in-sql.git
 cd aoc-in-sql
-# add input text document as inputs/dayXX.txt
-# update input and SQL file paths in run.py
+# add input text documents as inputs/dayXX.txt
 python run.py
 ```
