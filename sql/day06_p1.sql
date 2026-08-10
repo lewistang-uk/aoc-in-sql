@@ -74,7 +74,7 @@ aggregated AS (
     SELECT
         j,
         SUM(CAST(num AS INTEGER)) AS plus,
-        ROUND(EXP(SUM(LN(CAST(NUM AS INTEGER)))), 0) AS star -- multiplication is addition in log space
+        ROUND(EXP(SUM(LN(CAST(num AS INTEGER)))), 0) AS star -- multiplication is addition in log space
     FROM numbers
     GROUP BY j
 )
