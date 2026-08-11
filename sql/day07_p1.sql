@@ -70,14 +70,3 @@ SELECT COUNT(*)
 FROM arrows
 WHERE (i-1, j) IN (SELECT i, j FROM beam)
 ;
-
-/* Note:
-The following query would solve part 2 if UNION ALL is used in the recursive CTE. 
-
-SELECT COUNT(*)
-FROM beam
-WHERE i = (SELECT MAX(id) FROM day7)
-;
-
-However, the answer is 13 digits long, so simulating all paths would be computationally expensive and basically impossible.
-*/
