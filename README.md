@@ -4,14 +4,21 @@ Solutions to some of the Advent of Code 2025 problems using SQL.
 
 ---
 
+## Techniques
+
+`Recursive CTEs` `Subqueries` `Window Functions` `Mathematics` `String Manipulation` `Complex Joins` `Gaps and Islands` `Aggregation`
+
+---
+
 ## Structure 
 
 ```bash
 aoc-in-sql/
 ├── .gitignore
 ├── README.md
-├── inputs.example/        # example input folder
 ├── run.py                 # runner to execute SQL solutions
+├── inputs.example/        # example input folder
+├── notes/                 # description of solutions
 └── sql/                   # contains all SQL queries used
 ```
 
@@ -39,6 +46,20 @@ The query is then read and executed, with the output printed to stdout.
 
 All other processing was done in a single SQL query using SQLite. 
 Note that SQLite does not have a splitting function or regular expressions by default, so other string methods were used.
+
+---
+
+## Solutions
+
+| Day | Notes |
+|:---:|:-----:|
+| 01  | [Notes](./notes/day01.md) |
+| 02  | [Notes](./notes/day02.md) |
+| 03  | [Notes](./notes/day03.md) |
+| 04  | [Notes](./notes/day04.md) |
+| 05  | [Notes](./notes/day05.md) |
+| 06  | [Notes](./notes/day06.md) |
+| 07  | [Notes](./notes/day07.md) |
 
 ---
 
