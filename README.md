@@ -4,6 +4,12 @@ Solutions to some of the Advent of Code 2025 problems using SQL.
 
 ---
 
+## Techniques
+
+`Recursive CTEs` `Subqueries` `Window Functions` `Mathematics` `String Manipulation` `Complex Joins` `Gaps and Islands` `Aggregation`
+
+---
+
 ## Structure 
 
 ```bash
