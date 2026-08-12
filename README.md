@@ -60,6 +60,7 @@ Note that SQLite does not have a splitting function or regular expressions by de
 | 05  | [Notes](./notes/day05.md) |
 | 06  | [Notes](./notes/day06.md) |
 | 07  | [Notes](./notes/day07.md) |
+| 08  | [Notes](./notes/day08.md) |
 
 ---
 
