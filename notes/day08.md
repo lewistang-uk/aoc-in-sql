@@ -32,6 +32,11 @@ However, this approach did not scale well.
 
 I changed to a different approach: find the minimum node ID that each node is connected to.
 
-By traversing the graph using a recursive CTE and joins, the "root" for each path through the graph could be stored in a table.
-There was no risk of overcounting with this approach since the minimum node ID uniquely identifies each disjoint graph.
+By traversing the graph using a recursive CTE and joins, the "root" for each path through the graph could be stored in a table. 
+The minimum root can then be found for each node in one aggregation.
+
+The main advantage is that the path from the root to each node does not matter in this approach, so individual paths do not have to be stored. 
+In a complex graph, there can be many paths that go from the root to a given node.
+In addition, there was no risk of overcounting with this approach, since the minimum node ID uniquely identifies each disjoint graph.
+
 Finding the top three counts of minimum node ID and multiplying using the workaround in [Day 6](day06.md) gives the answer in roughly 1 second.
