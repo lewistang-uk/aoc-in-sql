@@ -3,8 +3,8 @@ WITH rotations AS (
     SELECT
         id,
         CASE 
-            WHEN substr(ln, 1, 1) = "L" THEN -1*CAST(SUBSTRING(ln, 2) AS INT)
-            ELSE CAST(SUBSTRING(ln, 2) AS INT)
+            WHEN substr(ln, 1, 1) = "L" THEN -1*CAST(substr(ln, 2) AS INT)
+            ELSE CAST(substr(ln, 2) AS INT)
         END AS rotation
     FROM day1
     ORDER BY id
