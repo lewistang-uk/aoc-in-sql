@@ -10,6 +10,7 @@ files = [file.name for file in folder.iterdir() if file.is_file()]
 
 for file in files:
     pth, _ = file.split(".") # returns ["dayXX", "txt"]
+    pth = "".join(pth.split("0"))
 
     with open(Path("inputs") / file) as f:
         cursor.execute(f"DROP TABLE IF EXISTS {pth}")
@@ -32,10 +33,13 @@ folder = Path("sql")
 files = [file.name for file in folder.iterdir() if file.is_file()]
 
 for file in sorted(files):
+    if file in ["day04_p2.sql", "day07_p2.sql"]:
+        print(f"Solution to {file.split('.')[0]}: Not shown due to timeout")
+        continue
     with open(Path("sql") / file) as f:
         query = f.read()
 
-    pth, _ = file.split(".") # returns ["dayXX_pN", "txt"]
+    pth, _ = file.split(".") # returns ["dayXX_pN", "sql"]
     rows = cursor.execute(query).fetchall()
 
     for row in rows:
