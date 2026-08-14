@@ -76,6 +76,7 @@ Key:
 | 12 | ✅ | ✅\* | [Notes](./notes/day12.md) |
 
 \* The final day of Advent of Code does not have a part 2.
+
 ---
 
 ## Table Schema
