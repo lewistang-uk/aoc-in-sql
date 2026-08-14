@@ -61,7 +61,7 @@ Key:
 - 🟠 - unsolved
 
 | Day | Part 1 | Part 2 | Notes |
-|:---:|:------:|:------:||:----:|
+|:---:|:------:|:------:|:----:|
 | 01 | ✅ | ✅ | [Notes](./notes/day01.md) |
 | 02 | ✅ | ✅ | [Notes](./notes/day02.md) |
 | 03 | ✅ | ✅ | [Notes](./notes/day03.md) |
