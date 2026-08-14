@@ -73,7 +73,7 @@ Key:
 | 09 | ✅ | ✅ | [Notes](./notes/day09.md) |
 | 10 | 🟠 | 🟠 | TBC |
 | 11 | 🟠 | 🟠 | TBC |
-| 12 | ✅ | ✅* | [Notes](./notes/day12.md) |
+| 12 | ✅ | ✅\* | [Notes](./notes/day12.md) |
 
 \* The final day of Advent of Code does not have a part 2.
 ---
