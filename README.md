@@ -6,7 +6,7 @@ Solutions to some of the Advent of Code 2025 problems using SQLite.
 
 ## Techniques
 
-`Recursive CTEs` `Subqueries` `Window Functions` `Mathematics` `String Manipulation` `Complex Joins` `Gaps and Islands` `Aggregation`
+`Recursive CTEs` `Subqueries` `Window Functions` `Mathematics` `String Manipulation` `Complex Joins` `Query Optimisation` `Gaps and Islands` `Aggregation`
 
 ---
 
@@ -43,8 +43,11 @@ python run.py
 
 Each puzzle input is read from a text file by the run.py script and saved line-by-line into a table. 
 The query is then read and executed, with the output printed to stdout.
+No Python helper functions were used other than the above.
 
-All other processing was done in a single SQL query using SQLite version 3.50.4. 
+Each solution runs in a single SQL query using SQLite version 3.50.4. 
+No CREATE, DELETE or INSERT statements were used.
+
 Note that SQLite does not have a splitting function or regular expressions by default, so other string methods were used.
 
 ---
@@ -61,6 +64,7 @@ Note that SQLite does not have a splitting function or regular expressions by de
 | 06  | [Notes](./notes/day06.md) |
 | 07  | [Notes](./notes/day07.md) |
 | 08  | [Notes](./notes/day08.md) |
+| 09  | [Notes](./notes/day09.md) |
 
 ---
 
