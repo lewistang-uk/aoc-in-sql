@@ -1,101 +1,120 @@
 -- part two
 
--- Example input runtime: 0.01 seconds
--- Puzzle input runtime: est. 3 days
+-- make it easier to find the line length
+WITH RECURSIVE lengths AS (
+    SELECT LENGTH(ln) AS line_length
+    FROM day4
+    WHERE id = 1 -- all lines same length
+),
 
--- find characters and their indices (i, j)
-WITH RECURSIVE cte(i, j, ch, ln) AS (
+-- pad the grid once with blanks
+padded_lines (ln, id) AS (
     SELECT 
-        id, 
-        1, 
-        substr(ln, 1, 1),
-        ln
+        REPLACE(printf('%' || (line_length + 2) || 's', ''), ' ', '.'), 
+        0
+    FROM lengths
+    
+    UNION ALL
+
+    SELECT 
+        '.' || ln || '.',
+        id
     FROM day4
 
     UNION ALL
 
     SELECT 
-        i,
-        j+1,
-        substr(ln, j+1, 1),
-        ln
-    FROM cte
-    WHERE j < length(ln)
+        REPLACE(printf('%' || (line_length + 2) || 's', ''), ' ', '.'), 
+        line_length + 1
+    FROM lengths
+
+    ORDER BY id 
 ),
 
--- filter characters for '@'
-at_positions AS (
+-- flatten grid into line for rCTE
+str_input AS (
     SELECT 
-        i,
-        j
-    FROM cte
-    WHERE ch = '@'
+        GROUP_CONCAT(ln, '') AS str,
+        LENGTH(GROUP_CONCAT(ln, '')) AS len_str
+    FROM padded_lines
 ),
 
--- remove one @ at a time
-recursive_check_neighbours (removed_i, removed_j, removed, ct) AS (
+-- initialise a queue with every index checked
+generate_queue (k) AS (
+    SELECT 1
+    FROM lengths
+
+    UNION ALL
+
+    SELECT g.k+1
+    FROM generate_queue g, str_input s
+    WHERE k < s.len_str
+),
+
+-- flatten queue into a comma-separated string for rCTE
+pivoted_queue AS (
+    SELECT GROUP_CONCAT(k) AS q
+    FROM generate_queue
+),
+
+-- iterate through the queue to check for removable @s
+iter (j, q, ln, removed) AS (
     SELECT
         0,
-        0,
-        '/',
+        p.q || ',' ,
+        s.str,
         0
+    FROM str_input s, pivoted_queue p
 
     UNION ALL
 
     SELECT
-        a.i,
-        a.j,
-        r.removed || a.i || ',' || a.j || '/',
-        r.ct + 1
-    FROM at_positions a
-    CROSS JOIN recursive_check_neighbours r
-    WHERE instr(r.removed, '/' || a.i || ',' || a.j || '/') = 0 -- not yet removed
-    AND (
-        CASE WHEN (a.i-1, a.j-1) IN (SELECT i, j FROM at_positions)
-             AND instr(r.removed, '/' || (a.i-1) || ',' || (a.j-1) || '/') = 0 THEN 1 ELSE 0 END +
-        CASE WHEN (a.i-1, a.j) IN (SELECT i, j FROM at_positions)
-             AND instr(r.removed, '/' || (a.i-1) || ',' || (a.j) || '/') = 0 THEN 1 ELSE 0 END +
-        CASE WHEN (a.i-1, a.j+1) IN (SELECT i, j FROM at_positions)
-             AND instr(r.removed, '/' || (a.i-1) || ',' || (a.j+1) || '/') = 0 THEN 1 ELSE 0 END +
-        CASE WHEN (a.i, a.j-1) IN (SELECT i, j FROM at_positions)
-             AND instr(r.removed, '/' || (a.i) || ',' || (a.j-1) || '/') = 0 THEN 1 ELSE 0 END +
-        CASE WHEN (a.i, a.j+1) IN (SELECT i, j FROM at_positions)
-             AND instr(r.removed, '/' || (a.i) || ',' || (a.j+1) || '/') = 0 THEN 1 ELSE 0 END +
-        CASE WHEN (a.i+1, a.j-1) IN (SELECT i, j FROM at_positions)
-             AND instr(r.removed, '/' || (a.i+1) || ',' || (a.j-1) || '/') = 0 THEN 1 ELSE 0 END +
-        CASE WHEN (a.i+1, a.j) IN (SELECT i, j FROM at_positions)
-             AND instr(r.removed, '/' || (a.i+1) || ',' || (a.j) || '/') = 0 THEN 1 ELSE 0 END +
-        CASE WHEN (a.i+1, a.j+1) IN (SELECT i, j FROM at_positions)
-             AND instr(r.removed, '/' || (a.i+1) || ',' || (a.j+1) || '/') = 0 THEN 1 ELSE 0 END
-    ) < 4
+        CAST(substr(i.q, 1, instr(i.q, ',') - 1) AS INTEGER),
 
-    -- pick the smallest valid ij from all @s
-    AND (a.i*1000 + a.j) = (
-        SELECT MIN(a2.i*1000 + a2.j)
-        FROM at_positions a2
-        WHERE instr(r.removed, '/' || a2.i || ',' || a2.j || '/') = 0
-        AND (
-            CASE WHEN (a2.i-1, a2.j-1) IN (SELECT i, j FROM at_positions)
-                 AND instr(r.removed, '/' || (a2.i-1) || ',' || (a2.j-1) || '/') = 0 THEN 1 ELSE 0 END +
-            CASE WHEN (a2.i-1, a2.j) IN (SELECT i, j FROM at_positions)
-                 AND instr(r.removed, '/' || (a2.i-1) || ',' || (a2.j) || '/') = 0 THEN 1 ELSE 0 END +
-            CASE WHEN (a2.i-1, a2.j+1) IN (SELECT i, j FROM at_positions)
-                 AND instr(r.removed, '/' || (a2.i-1) || ',' || (a2.j+1) || '/') = 0 THEN 1 ELSE 0 END +
-            CASE WHEN (a2.i, a2.j-1) IN (SELECT i, j FROM at_positions)
-                 AND instr(r.removed, '/' || (a2.i) || ',' || (a2.j-1) || '/') = 0 THEN 1 ELSE 0 END +
-            CASE WHEN (a2.i, a2.j+1) IN (SELECT i, j FROM at_positions)
-                 AND instr(r.removed, '/' || (a2.i) || ',' || (a2.j+1) || '/') = 0 THEN 1 ELSE 0 END +
-            CASE WHEN (a2.i+1, a2.j-1) IN (SELECT i, j FROM at_positions)
-                 AND instr(r.removed, '/' || (a2.i+1) || ',' || (a2.j-1) || '/') = 0 THEN 1 ELSE 0 END +
-            CASE WHEN (a2.i+1, a2.j) IN (SELECT i, j FROM at_positions)
-                 AND instr(r.removed, '/' || (a2.i+1) || ',' || (a2.j) || '/') = 0 THEN 1 ELSE 0 END +
-            CASE WHEN (a2.i+1, a2.j+1) IN (SELECT i, j FROM at_positions)
-                 AND instr(r.removed, '/' || (a2.i+1) || ',' || (a2.j+1) || '/') = 0 THEN 1 ELSE 0 END
-        ) < 4
-    )
+        CASE WHEN substr(i.ln, i.j, 1) = '@' 
+        AND LENGTH(
+                REPLACE(
+                    substr(i.ln, i.j - (l.line_length+2) - 1, 3) ||
+                    substr(i.ln, i.j - 1, 3) ||
+                    substr(i.ln, i.j + (l.line_length+2) - 1, 3) 
+                , '.', ''
+            )) < 5
+        -- if an @ is removed, the surrounding eight indices may become removable, so add to queue
+        THEN substr(i.q, instr(i.q, ',') + 1) || ',' ||
+            (i.j - (l.line_length+2) - 1) || ',' ||
+            (i.j - (l.line_length+2)) || ',' ||
+            (i.j - (l.line_length+2) + 1) || ',' ||
+            (i.j - 1) || ',' ||
+            (i.j + 1) || ',' ||
+            (i.j + (l.line_length+2) - 1) || ',' ||
+            (i.j + (l.line_length+2)) || ',' ||
+            (i.j + (l.line_length+2) + 1) || ',' 
+        ELSE substr(i.q, instr(i.q, ',') + 1) END,
+
+        CASE WHEN substr(i.ln, i.j, 1) = '@' 
+        AND LENGTH(
+                REPLACE(
+                    substr(i.ln, i.j - (l.line_length+2) - 1, 3) ||
+                    substr(i.ln, i.j - 1, 3) ||
+                    substr(i.ln, i.j + (l.line_length+2) - 1, 3) 
+                , '.', ''
+            )) < 5
+        THEN substr(i.ln, 1, j-1) || '.' || substr(i.ln, j+1) ELSE i.ln END,
+
+        CASE WHEN substr(i.ln, i.j, 1) = '@' 
+        AND LENGTH(
+                REPLACE(
+                    substr(i.ln, i.j - (l.line_length+2) - 1, 3) ||
+                    substr(i.ln, i.j - 1, 3) ||
+                    substr(i.ln, i.j + (l.line_length+2) - 1, 3)
+                , '.', ''
+            )) < 5
+        THEN i.removed + 1 ELSE i.removed END
+
+    FROM lengths l, iter i
+    WHERE i.q <> '' -- stop on empty queue
 )
 
--- count all valid occurrences
-SELECT MAX(ct)
-FROM recursive_check_neighbours
+SELECT MAX(removed)
+FROM iter
 ;
