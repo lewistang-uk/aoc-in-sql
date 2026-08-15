@@ -25,10 +25,21 @@ The task is to recursively remove rolls until no more can be removed, with the s
 
 This is simple in most programming languages and even other dialects of SQL, by iterating the process from part 1.
 However, within a recursive CTE, SQLite does not support aggregation, references to itself, or tables as arguments.
-This makes many approaches very difficult/impossible to implement.
+This makes approaches involving multiple removals in the same pass very difficult/impossible to implement.
 
-The approach chosen was to recursively remove one roll at a time, with a delimited string as the "visited" set modified between recursions.
+I also considered recursively removing one roll at a time, with a delimited string as the "removed" set modified between recursions.
+The choice of roll would be the lowest-indexed roll such that the eight surrounding rolls were either visited or not in the set of rolls.
 Counting the total number of removals after this gives the required result.
+Upon analysis, I discovered that this would take days to complete due to the inefficiency of finding a roll to remove.
 
-Running this code would take days to complete due to the inefficiency of finding a roll to remove.
-The run.py script skips this part.
+I chose to implement a queue-based approach.
+The input was padded once and flattened into a single line, allowing it to be passed into the recursive CTE and modified during iterations.
+The queue was implemented as a comma-delimited string, with a pop method (use "instr" to split on the first comma) and an append method (concatenate queue with a value and a trailing comma).
+
+The queue was initialised with every checkable index in the input.
+Every iteration popped an index from the queue.
+If the item at the index was removable, then a counter was increased, the string was modified to remove the roll and the eight neighbours were added to the queue.
+Otherwise, the next index in the queue was considered.
+Once the queue was empty, then the highest count gave the required result.
+
+This solution is still less efficient than iterating part 1 until convergence (O(n^2) vs O(n)), but manages a reasonable 7-second runtime.

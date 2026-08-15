@@ -65,7 +65,7 @@ Key:
 | 01 | ✅ | ✅ | [Notes](./notes/day01.md) |
 | 02 | ✅ | ✅ | [Notes](./notes/day02.md) |
 | 03 | ✅ | ✅ | [Notes](./notes/day03.md) |
-| 04 | ✅ | ☑️ | [Notes](./notes/day04.md) |
+| 04 | ✅ | ✅ | [Notes](./notes/day04.md) |
 | 05 | ✅ | ✅ | [Notes](./notes/day05.md) |
 | 06 | ✅ | ✅ | [Notes](./notes/day06.md) |
 | 07 | ✅ | ✅ | [Notes](./notes/day07.md) |
