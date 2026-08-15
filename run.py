@@ -33,7 +33,7 @@ folder = Path("sql")
 files = [file.name for file in folder.iterdir() if file.is_file()]
 
 for file in sorted(files):
-    if file in ["day04_p2.sql", "day07_p2.sql"]:
+    if file in ["day07_p2.sql"]:
         print(f"Solution to {file.split('.')[0]}: Not shown due to timeout")
         continue
     with open(Path("sql") / file) as f:
