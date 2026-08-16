@@ -55,7 +55,7 @@ Specifically, the string must allow lookups to determine the current group a nod
 I considered a string of the form "(nodeId,minNodeId)(nodeId,minNodeId)...", which allows lookups as instr(string, "(nodeId,") and replacements as REPLACE(string, ",oldId)", ",newId)"). 
 However, this string is around two times longer than the chosen option.
 
-I chose a string of the form "(minNodeId)(minNodeId)" with ids of a fixed length (3). 
+I chose a string of the form "(minNodeId)(minNodeId)..." with ids of a fixed length (3). 
 Lookups are implemented as substr(string, 5 x id - 3, 3) to find the three digit id.
 Replacements use the above replace method with (oldId) and (newId).
 
