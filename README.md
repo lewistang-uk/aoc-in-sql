@@ -69,7 +69,7 @@ Key:
 | 05 | ✅ | ✅ | [Notes](./notes/day05.md) |
 | 06 | ✅ | ✅ | [Notes](./notes/day06.md) |
 | 07 | ✅ | ✅ | [Notes](./notes/day07.md) |
-| 08 | ✅ | 🟠 | [Notes](./notes/day08.md) |
+| 08 | ✅ | ✅ | [Notes](./notes/day08.md) |
 | 09 | ✅ | ✅ | [Notes](./notes/day09.md) |
 | 10 | 🟠 | 🟠 | TBC |
 | 11 | ✅ | ☑️ | [Notes](./notes/day11.md) |

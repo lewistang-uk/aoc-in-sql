@@ -1,3 +1,6 @@
 # personal inputs
 inputs/
 aoc.db
+
+# personal test script
+run_test.py
