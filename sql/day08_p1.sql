@@ -1,4 +1,4 @@
--- day one
+-- part one
 
 -- parse coordinates
 WITH RECURSIVE coords AS (
