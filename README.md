@@ -64,22 +64,6 @@ Key:
 - ☑️ - solved but rework needed
 - 🟠 - unsolved
 
-<<<<<<< Updated upstream
-| Day | Part 1 | Part 2 | Notes |
-|:---:|:------:|:------:|:----:|
-| 01 | ✅ | ✅ | [Notes](./notes/day01.md) |
-| 02 | ✅ | ✅ | [Notes](./notes/day02.md) |
-| 03 | ✅ | ✅ | [Notes](./notes/day03.md) |
-| 04 | ✅ | ✅ | [Notes](./notes/day04.md) |
-| 05 | ✅ | ✅ | [Notes](./notes/day05.md) |
-| 06 | ✅ | ✅ | [Notes](./notes/day06.md) |
-| 07 | ✅ | ✅ | [Notes](./notes/day07.md) |
-| 08 | ✅ | ✅ | [Notes](./notes/day08.md) |
-| 09 | ✅ | ✅ | [Notes](./notes/day09.md) |
-| 10 | ✅ | 🟠 | [Notes](./notes/day10.md) |
-| 11 | ✅ | ☑️ | [Notes](./notes/day11.md) |
-| 12 | ✅ | ✅\* | [Notes](./notes/day12.md) |
-=======
 | Day | Part 1 | Part 2 | Notes | Main Techniques |
 |:---:|:------:|:------:|:-----:|:----------:|
 | 01 | ✅ | ✅ | [Notes](./notes/day01.md) | `Window Functions` `Mathematics` `Aggregation` |
@@ -94,7 +78,6 @@ Key:
 | 10 | ✅ | 🟠 | [Notes](./notes/day10.md) | `Recursive CTEs` `String Manipulation` `Mathematics` |
 | 11 | ✅ | ☑️ | [Notes](./notes/day11.md) | `Recursive CTEs` `Query Optimisation` |
 | 12 | ✅ | ✅\* | [Notes](./notes/day12.md) | `String Manipulation` `Gaps and Islands` `Recursive CTEs` |
->>>>>>> Stashed changes
 
 \* The final day of Advent of Code does not have a part 2.
 
