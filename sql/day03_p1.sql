@@ -12,7 +12,7 @@ WITH fst AS (
         WHEN instr(substr(ln, 1, LENGTH(ln)-1), "3") > 0 THEN "3"
         WHEN instr(substr(ln, 1, LENGTH(ln)-1), "2") > 0 THEN "2"
         ELSE "1" END AS first_digit
-    FROM day3
+    FROM day03
 ),
 
 indx AS (

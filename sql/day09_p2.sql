@@ -6,7 +6,7 @@ WITH coords AS MATERIALIZED (
         id,
         CAST(substr(ln, 1, instr(ln, ',') - 1) AS INTEGER) AS x,
         CAST(substr(ln, instr(ln, ',') + 1) AS INTEGER) AS y
-    FROM day9    
+    FROM day09    
 ),
 
 edges_with_null AS (

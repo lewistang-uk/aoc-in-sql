@@ -7,7 +7,7 @@ WITH RECURSIVE find_chars (i, j, obj, ln) AS (
         1,
         substr(ln, 1, 1),
         ln
-    FROM day7
+    FROM day07
 
     UNION ALL
 
@@ -45,7 +45,7 @@ beam (i, j) AS (
         j
     FROM beam
     WHERE (i+1, j) NOT IN (SELECT i, j FROM arrows)
-    AND i+1 <= (SELECT MAX(id) FROM day7)
+    AND i+1 <= (SELECT MAX(id) FROM day07)
 
     UNION
 

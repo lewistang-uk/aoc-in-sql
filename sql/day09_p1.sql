@@ -5,7 +5,7 @@ WITH coords AS (
     SELECT
         CAST(substr(ln, 1, instr(ln, ',') - 1) AS INTEGER) AS x,
         CAST(substr(ln, instr(ln, ',') + 1) AS INTEGER) AS y
-    FROM day9    
+    FROM day09    
 ),
 
 -- find areas for each rectangle

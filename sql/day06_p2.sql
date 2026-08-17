@@ -7,8 +7,8 @@ WITH RECURSIVE operations (j, indx, op, ln) AS (
         instr(ln, ' ') + 1,
         substr(ln, 1, instr(ln, ' ') - 1),
         ln
-    FROM day6
-    WHERE id = (SELECT MAX(id) FROM day6) -- last row
+    FROM day06
+    WHERE id = (SELECT MAX(id) FROM day06) -- last row
 
     UNION ALL
 
@@ -37,7 +37,7 @@ numbers (i, j, num, ln) AS (
         1,
         substr(ln, 1, 1),
         ln
-    FROM day6
+    FROM day06
     WHERE ln NOT LIKE '%*%'
     AND ln NOT LIKE '%+%'
 

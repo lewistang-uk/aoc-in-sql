@@ -5,7 +5,7 @@ WITH RECURSIVE split(val, rest) AS (
     SELECT
         '',
         ln || ','
-    FROM day2
+    FROM day02
     UNION ALL
     SELECT
         substr(rest, 1, instr(rest, ',') - 1),

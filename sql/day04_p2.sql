@@ -3,7 +3,7 @@
 -- make it easier to find the line length
 WITH RECURSIVE lengths AS (
     SELECT LENGTH(ln) AS line_length
-    FROM day4
+    FROM day04
     WHERE id = 1 -- all lines same length
 ),
 
@@ -19,7 +19,7 @@ padded_lines (ln, id) AS (
     SELECT 
         '.' || ln || '.',
         id
-    FROM day4
+    FROM day04
 
     UNION ALL
 

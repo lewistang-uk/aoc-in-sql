@@ -7,7 +7,7 @@ WITH RECURSIVE find_chars (i, j, obj, ln) AS (
         1,
         substr(ln, 1, 1),
         ln
-    FROM day7
+    FROM day07
 
     UNION ALL
 
@@ -199,7 +199,7 @@ beam_4 (i, j, start_j) AS (
         start_j
     FROM beam_4
     WHERE (i+1, j) NOT IN (SELECT i, j FROM arrows)
-    AND i+1 <= (SELECT MAX(id) FROM day7)
+    AND i+1 <= (SELECT MAX(id) FROM day07)
 
     UNION ALL
 
@@ -210,7 +210,7 @@ beam_4 (i, j, start_j) AS (
         start_j
     FROM beam_4
     WHERE (i+1, j) IN (SELECT i, j FROM arrows)
-    AND i+1 <= (SELECT MAX(id) FROM day7)
+    AND i+1 <= (SELECT MAX(id) FROM day07)
 
     UNION ALL
 
@@ -220,7 +220,7 @@ beam_4 (i, j, start_j) AS (
         start_j
     FROM beam_4
     WHERE (i+1, j) IN (SELECT i, j FROM arrows)
-    AND i+1 <= (SELECT MAX(id) FROM day7)
+    AND i+1 <= (SELECT MAX(id) FROM day07)
 ),
 
 -- aggregate
@@ -230,7 +230,7 @@ last_total AS (
         j,
         SUM((SELECT tt.ct FROM third_total tt WHERE tt.j = beam_4.start_j)) AS ct
     FROM beam_4
-    WHERE i = (SELECT MAX(id) FROM day7)
+    WHERE i = (SELECT MAX(id) FROM day07)
     GROUP BY i, j
 )
 
