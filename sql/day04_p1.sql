@@ -7,7 +7,7 @@ WITH RECURSIVE cte(i, j, ch, ln) AS (
         1, 
         substr(ln, 1, 1),
         ln
-    FROM day4
+    FROM day04
 
     UNION ALL
 

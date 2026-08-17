@@ -7,7 +7,7 @@ WITH RECURSIVE coords AS (
         CAST(substr(ln, 1, instr(ln, ',')-1) AS INTEGER) AS x, 
         CAST(substr(substr(ln, instr(ln, ',')+1), 1, instr(substr(ln, instr(ln, ',')+1), ',')-1) AS INTEGER) AS y,
         CAST(substr(ln, instr(ln, ',') + instr(substr(ln, instr(ln, ',')+1), ',')+1) AS INTEGER) AS z
-    FROM day8
+    FROM day08
 ),
 
 -- find pairs

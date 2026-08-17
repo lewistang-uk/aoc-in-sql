@@ -21,7 +21,7 @@ WITH RECURSIVE cleaned AS (
             '  ', -- two spaces
             ' '
         ) AS ln
-    FROM day6
+    FROM day06
 ),
 
 -- find all the numbers and their ijs

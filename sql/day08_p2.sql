@@ -7,7 +7,7 @@ WITH RECURSIVE coords AS (
         CAST(substr(ln, 1, instr(ln, ',')-1) AS INTEGER) AS x, 
         CAST(substr(substr(ln, instr(ln, ',')+1), 1, instr(substr(ln, instr(ln, ',')+1), ',')-1) AS INTEGER) AS y,
         CAST(substr(ln, instr(ln, ',') + instr(substr(ln, instr(ln, ',')+1), ',')+1) AS INTEGER) AS z
-    FROM day8
+    FROM day08
 ),
 
 -- find pairs
@@ -41,7 +41,7 @@ group_nos (k) AS (
 
     SELECT printf('%03d', CAST(k AS INTEGER)+1)
     FROM group_nos
-    WHERE CAST(k AS INTEGER) < (SELECT MAX(id) FROM day8)-1 -- day8 is 1-indexed, this is 0-indexed
+    WHERE CAST(k AS INTEGER) < (SELECT MAX(id) FROM day08)-1 -- day08 is 1-indexed, this is 0-indexed
 ),
 
 
@@ -49,7 +49,7 @@ group_nos (k) AS (
 iterate (groups, distinct_groups, ln) AS (
     SELECT
         GROUP_CONCAT('<' || g.k || '>' , ''),
-        (SELECT MAX(id) FROM day8) - 1,
+        (SELECT MAX(id) FROM day08) - 1,
         1
     FROM group_nos g
 

@@ -6,7 +6,7 @@ WITH rotations AS (
             WHEN substr(ln, 1, 1) = 'L' THEN -1 * CAST(substr(ln, 2) AS INT)
             ELSE CAST(substr(ln, 2) AS INT)
         END AS rotation
-    FROM day1
+    FROM day01
 ),
 
 adj_start AS (

@@ -35,7 +35,7 @@ WITH RECURSIVE cte AS (
             ELSE '1' 
         END AS n
 
-    FROM day3
+    FROM day03
 
     UNION ALL
 
